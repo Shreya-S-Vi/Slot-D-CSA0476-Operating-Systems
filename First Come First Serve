@@ -1,0 +1,32 @@
+#include<stdio.h>
+int main()
+{
+	int p[100],bt[100],wt[100],tat[100],n,i,wait=0;
+	printf("Enter the number of processes:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter Burst Time for Process %d:",i+1);
+		scanf("%d",&bt[i]);
+	}
+	
+	for(i=0;i<n;i++)
+	{
+		wt[i]=wait;
+		wait+=bt[i];
+	}
+	printf("Waiting Time:\n");
+	for(i=0;i<n;i++)
+	{
+		printf("%d\n",wt[i]);
+	}
+	for(i=0;i<n;i++)
+	{
+		tat[i]=bt[i]+wt[i];
+	}
+	printf("Turnaround Time:\n");
+	for(i=0;i<n;i++)
+	{
+		printf("%d\n",tat[i]);
+	}
+}
