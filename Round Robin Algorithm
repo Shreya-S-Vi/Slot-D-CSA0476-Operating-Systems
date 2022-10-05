@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int i,p,sum=0,count=0,y,quant,wt=0,tat=0,at[10],bt[100],temp[100];
+	printf("Total number of processes in the system:");
+	scanf("%d",&p);
+	y=p;
+	for(i=0;i<p;i++)
+	{
+		printf("\nEnter the Arrivial Time and Burst Time of the Process %d\n",i+1);
+		printf("Arrival Time:");
+		scanf("%d",&at[i]);
+		printf("Burst Time:");
+		scanf("%d",&bt[i]);
+		temp[i]=bt[i];
+	}
+	
+	printf("Enter Quantum Time:");
+	scanf("%d",&quant);
+	
+	printf("\nProcess Number \tBurst Time \tWaiting Time \tTurnaround Time");
+	
+	for(sum=0,i=0;y!=0;)
+	{
+		if(temp[i]<=quant && temp[i]>0)
+		{
+			sum+=temp[i];
+			temp[i]=0;
+			count=1;
+		}
+		else if(temp[i]>0)
+		{
+			temp[i]-=quant;
+			sum+=quant;
+		}
+		if(temp[i]==0 && count==1)
+		{
+			y--;
+			printf("\nP%d \t\t%d \t\t%d \t\t%d",i+1,bt[i],sum-at[i]-bt[i],sum-at[i]);
+			wt+=sum-at[i]-bt[i];
+			tat+=sum-at[i];
+			count=0;
+		}
+		if(i==p-1)
+		{
+			i=0;
+		}
+		else if(at[i+1]<=sum)
+		{
+			i++;
+		}
+		else
+		{
+			i=0;
+		}
+	}
+	getch();
+}
