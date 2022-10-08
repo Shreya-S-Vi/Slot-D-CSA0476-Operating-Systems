@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void main()
+{
+	int n;
+	FILE *fptr;
+	fptr=fopen("sample.txt","w");
+	printf("Enter number:");
+	scanf("%d",&n);
+	printf(fptr,"%d",n);
+	fclose(fptr);
+	
+	fptr=fopen("sample.txt","r");
+	if(fptr==NULL)
+	{
+		printf("Error");
+	}
+	
+	fscanf(fptr,"%d",&n);
+	printf("\nThe value of n = %d",n);
+	fclose(fptr);
+	
+	getch();
+}
